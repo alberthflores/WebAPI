@@ -22,6 +22,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebAPI.Filters;
 using WebAPI.ApiBehavior;
+using ServiceLayer;
+using RepositoryLayer;
 
 namespace WebAPI
 {
@@ -42,18 +44,21 @@ namespace WebAPI
             //services.AddCors();
             
 
-            services.AddControllers(options =>
-            {
-                options.Filters.Add(typeof(ExceptionFilter));
-                options.Filters.Add(typeof(ParsetBadRequests));
-            }).ConfigureApiBehaviorOptions(BadRequestsBehavior.Parsear);
-
+            //services.AddControllers(options =>
+            //{
+            //    options.Filters.Add(typeof(ExceptionFilter));
+            //    options.Filters.Add(typeof(ParsetBadRequests));
+            //}).ConfigureApiBehaviorOptions(BadRequestsBehavior.Parsear);
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
 
             //Services here!.
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

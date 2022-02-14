@@ -27,6 +27,6 @@ namespace DomainLayer
             
         }
 
-
+        public DbSet<Product> Products { get; set; }
     }
 }

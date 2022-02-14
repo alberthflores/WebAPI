@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DomainLayer.Models;
+using DtoLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace WebAPI.Utils
     {
         public AutoMapperProfile()
         {
-            //CreateMap<x, xDto>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<Product, CreateProductDto>().ReverseMap();
         }
     }
 }
